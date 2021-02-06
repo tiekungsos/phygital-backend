@@ -23,7 +23,7 @@ class StoreOurTeamRequest extends FormRequest
             ],
             'position'      => [
                 'string',
-                'max:-1',
+                'max:255',
                 'nullable',
             ],
             'detail_person' => [

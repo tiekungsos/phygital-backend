@@ -247,6 +247,8 @@ return [
             'updated_at_helper'     => ' ',
             'deleted_at'            => 'Deleted at',
             'deleted_at_helper'     => ' ',
+            'serch_tag'             => 'Serch Tag',
+            'serch_tag_helper'      => 'tag สำหรับการค้นหา',
         ],
     ],
     'contactUs'      => [
@@ -287,6 +289,22 @@ return [
             'detail_helper'       => ' ',
             'detail_image'        => 'Detail Image',
             'detail_image_helper' => 'ใช้สำหรับ logo หรือ icon',
+        ],
+    ],
+    'serchTag'       => [
+        'title'          => 'Serch Tag',
+        'title_singular' => 'Serch Tag',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => ' ',
+            'name'              => 'Name',
+            'name_helper'       => ' ',
+            'created_at'        => 'Created at',
+            'created_at_helper' => ' ',
+            'updated_at'        => 'Updated at',
+            'updated_at_helper' => ' ',
+            'deleted_at'        => 'Deleted at',
+            'deleted_at_helper' => ' ',
         ],
     ],
 ];

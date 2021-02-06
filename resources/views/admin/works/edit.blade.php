@@ -35,6 +35,22 @@
                 <span class="help-block">{{ trans('cruds.work.fields.type_of_work_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="serch_tags">{{ trans('cruds.work.fields.serch_tag') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('serch_tags') ? 'is-invalid' : '' }}" name="serch_tags[]" id="serch_tags" multiple required>
+                    @foreach($serch_tags as $id => $serch_tag)
+                        <option value="{{ $id }}" {{ (in_array($id, old('serch_tags', [])) || $work->serch_tags->contains($id)) ? 'selected' : '' }}>{{ $serch_tag }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('serch_tags'))
+                    <span class="text-danger">{{ $errors->first('serch_tags') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.work.fields.serch_tag_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="clients_id">{{ trans('cruds.work.fields.clients') }}</label>
                 <select class="form-control select2 {{ $errors->has('clients') ? 'is-invalid' : '' }}" name="clients_id" id="clients_id">
                     @foreach($clients as $id => $clients)
