@@ -20,13 +20,14 @@ class WorkApiController extends Controller
     {
         abort_if(Gate::denies('work_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new WorkResource(Work::with(['type_of_works', 'clients'])->get());
+        return new WorkResource(Work::with(['type_of_works', 'serch_tags', 'clients'])->get());
     }
 
     public function store(StoreWorkRequest $request)
     {
         $work = Work::create($request->all());
         $work->type_of_works()->sync($request->input('type_of_works', []));
+        $work->serch_tags()->sync($request->input('serch_tags', []));
 
         if ($request->input('header_image', false)) {
             $work->addMedia(storage_path('tmp/uploads/' . $request->input('header_image')))->toMediaCollection('header_image');
@@ -45,13 +46,14 @@ class WorkApiController extends Controller
     {
         abort_if(Gate::denies('work_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new WorkResource($work->load(['type_of_works', 'clients']));
+        return new WorkResource($work->load(['type_of_works', 'serch_tags', 'clients']));
     }
 
     public function update(UpdateWorkRequest $request, Work $work)
     {
         $work->update($request->all());
         $work->type_of_works()->sync($request->input('type_of_works', []));
+        $work->serch_tags()->sync($request->input('serch_tags', []));
 
         if ($request->input('header_image', false)) {
             if (!$work->header_image || $request->input('header_image') !== $work->header_image->file_name) {

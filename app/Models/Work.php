@@ -53,6 +53,11 @@ class Work extends Model implements HasMedia
         return $this->belongsToMany(WorkCategory::class);
     }
 
+    public function serch_tags()
+    {
+        return $this->belongsToMany(SerchTag::class);
+    }
+
     public function clients()
     {
         return $this->belongsTo(OurClient::class, 'clients_id');
