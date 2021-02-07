@@ -23,6 +23,12 @@ class GrowupBlogApiController extends Controller
         return new GrowupBlogResource(GrowupBlog::with(['types'])->get());
     }
 
+
+    public function getData()
+    {
+        return new GrowupBlogResource(GrowupBlog::with(['types'])->get());
+    }
+
     public function store(StoreGrowupBlogRequest $request)
     {
         $growupBlog = GrowupBlog::create($request->all());

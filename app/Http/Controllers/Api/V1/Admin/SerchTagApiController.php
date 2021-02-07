@@ -20,6 +20,12 @@ class SerchTagApiController extends Controller
         return new SerchTagResource(SerchTag::all());
     }
 
+    public function getData()
+    {
+        return new SerchTagResource(SerchTag::all());
+    }
+
+
     public function store(StoreSerchTagRequest $request)
     {
         $serchTag = SerchTag::create($request->all());

@@ -20,6 +20,13 @@ class WorkCategoryApiController extends Controller
         return new WorkCategoryResource(WorkCategory::all());
     }
 
+    public function getData()
+    {
+        return new WorkCategoryResource(WorkCategory::with(['typeOfWorkWorks'])->get());
+
+        // return new WorkCategoryResource(WorkCategory::all());
+    }
+
     public function store(StoreWorkCategoryRequest $request)
     {
         $workCategory = WorkCategory::create($request->all());

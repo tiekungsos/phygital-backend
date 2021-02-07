@@ -22,6 +22,12 @@ class WorkApiController extends Controller
 
         return new WorkResource(Work::with(['type_of_works', 'serch_tags', 'clients'])->get());
     }
+    
+    public function getData()
+    {
+        return new WorkResource(Work::with(['type_of_works','serch_tags', 'clients'])->get());
+    }
+    
 
     public function store(StoreWorkRequest $request)
     {

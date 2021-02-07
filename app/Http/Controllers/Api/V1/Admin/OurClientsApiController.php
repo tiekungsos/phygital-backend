@@ -23,6 +23,11 @@ class OurClientsApiController extends Controller
         return new OurClientResource(OurClient::all());
     }
 
+    public function getData()
+    {
+        return new OurClientResource(OurClient::all());
+    }
+
     public function store(StoreOurClientRequest $request)
     {
         $ourClient = OurClient::create($request->all());
