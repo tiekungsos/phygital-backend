@@ -57,4 +57,5 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin'], 
     Route::get('works', 'WorkApiController@getData')->name('works.getData');
     Route::get('work-categories', 'WorkCategoryApiController@getData')->name('works-categories.getData');
     Route::get('serch-tags', 'SerchTagApiController@getData')->name('serch-tags.getData');
+    Route::get('setting', 'MetadataApiController@getData')->name('setting.getData');
 });
