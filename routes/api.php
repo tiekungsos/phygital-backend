@@ -37,7 +37,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::apiResource('works', 'WorkApiController');
 
     // Contactuses
-    Route::apiResource('contactuses', 'ContactUsApiController');
+    // Route::apiResource('contactuses', 'ContactUsApiController');
 
     // Metadata
     Route::post('metadata/media', 'MetadataApiController@storeMedia')->name('metadata.storeMedia');
