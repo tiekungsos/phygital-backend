@@ -201,6 +201,7 @@
     Dropzone.options.videoDropzone = {
     url: '{{ route('admin.sliders.storeMedia') }}',
     maxFilesize: 50, // MB
+    acceptedFiles: '.mp4',
     maxFiles: 1,
     addRemoveLinks: true,
     headers: {

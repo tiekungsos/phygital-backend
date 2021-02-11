@@ -56,6 +56,7 @@ class SliderController extends Controller
     {
         abort_if(Gate::denies('slider_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+
         return view('admin.sliders.edit', compact('slider'));
     }
 
