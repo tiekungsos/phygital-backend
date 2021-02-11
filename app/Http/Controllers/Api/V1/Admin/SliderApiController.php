@@ -23,6 +23,11 @@ class SliderApiController extends Controller
         return new SliderResource(Slider::all());
     }
 
+    public function getData()
+    {
+        return new SliderResource(Slider::all());
+    }
+
     public function store(StoreSliderRequest $request)
     {
         $slider = Slider::create($request->all());

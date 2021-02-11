@@ -22,6 +22,11 @@ class MetadataApiController extends Controller
         return new MetadataResource(Metadata::all());
     }
 
+    public function getData()
+    {
+        return new MetadataResource(Metadata::all());
+    }
+
     public function show(Metadata $metadata)
     {
         abort_if(Gate::denies('metadata_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');

@@ -20,6 +20,11 @@ class GrowupCategoryApiController extends Controller
         return new GrowupCategoryResource(GrowupCategory::all());
     }
 
+    public function getData()
+    {
+        return new GrowupCategoryResource(GrowupCategory::all());
+    }
+
     public function store(StoreGrowupCategoryRequest $request)
     {
         $growupCategory = GrowupCategory::create($request->all());

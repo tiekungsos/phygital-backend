@@ -31,6 +31,9 @@
                                 {{ trans('cruds.work.fields.type_of_work') }}
                             </th>
                             <th>
+                                {{ trans('cruds.work.fields.serch_tag') }}
+                            </th>
+                            <th>
                                 {{ trans('cruds.work.fields.clients') }}
                             </th>
                             <th>
@@ -59,6 +62,11 @@
                                 <td>
                                     @foreach($work->type_of_works as $key => $item)
                                         <span class="badge badge-info">{{ $item->type_name }}</span>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($work->serch_tags as $key => $item)
+                                        <span class="badge badge-info">{{ $item->name }}</span>
                                     @endforeach
                                 </td>
                                 <td>

@@ -23,6 +23,12 @@ class OurTeamApiController extends Controller
         return new OurTeamResource(OurTeam::all());
     }
 
+    public function getData()
+    {
+        return new OurTeamResource(OurTeam::all());
+    }
+    
+
     public function store(StoreOurTeamRequest $request)
     {
         $ourTeam = OurTeam::create($request->all());

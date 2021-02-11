@@ -29,6 +29,17 @@ class ContactUsApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
+    public function saveContactData(StoreContactUsRequest $request)
+    {
+        $contactUs = ContactUs::create($request->all());
+
+        return (new ContactUsResource($contactUs))
+            ->response()
+            ->setStatusCode(Response::HTTP_CREATED);
+    }
+
+    
+
     public function show(ContactUs $contactUs)
     {
         abort_if(Gate::denies('contact_us_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');

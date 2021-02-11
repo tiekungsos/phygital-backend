@@ -37,9 +37,26 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::apiResource('works', 'WorkApiController');
 
     // Contactuses
-    Route::apiResource('contactuses', 'ContactUsApiController');
+    // Route::apiResource('contactuses', 'ContactUsApiController');
 
     // Metadata
     Route::post('metadata/media', 'MetadataApiController@storeMedia')->name('metadata.storeMedia');
     Route::apiResource('metadata', 'MetadataApiController', ['except' => ['store', 'destroy']]);
+
+    // Serch Tags
+    Route::apiResource('serch-tags', 'SerchTagApiController');
+});
+
+
+Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin'], function () {
+    Route::get('sliders', 'SliderApiController@getData')->name('sliders.getData');
+    Route::get('ourteams', 'OurTeamApiController@getData')->name('our-teams.getData');
+    Route::get('ourclients', 'OurClientsApiController@getData')->name('our-clients.getData');
+    Route::get('growup-blogs', 'GrowupBlogApiController@getData')->name('growup-blogs.getData');
+    Route::get('growup-categories', 'GrowupCategoryApiController@getData')->name('growup-categories.getData');
+    Route::get('works', 'WorkApiController@getData')->name('works.getData');
+    Route::get('work-categories', 'WorkCategoryApiController@getData')->name('works-categories.getData');
+    Route::get('serch-tags', 'SerchTagApiController@getData')->name('serch-tags.getData');
+    Route::get('setting', 'MetadataApiController@getData')->name('setting.getData');
+    Route::post('contactuses', 'ContactUsApiController@saveContactData')->name('contactuses.saveContactData');
 });
