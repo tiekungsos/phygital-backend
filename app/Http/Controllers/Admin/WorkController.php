@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyWorkRequest;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
 use App\Models\OurClient;
+use App\Models\SerchTag;
 use App\Models\Work;
 use App\Models\WorkCategory;
 use Gate;
@@ -23,7 +24,7 @@ class WorkController extends Controller
     {
         abort_if(Gate::denies('work_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $works = Work::with(['type_of_works', 'clients', 'media'])->get();
+        $works = Work::with(['type_of_works', 'serch_tags', 'clients', 'media'])->get();
 
         return view('admin.works.index', compact('works'));
     }
@@ -34,15 +35,18 @@ class WorkController extends Controller
 
         $type_of_works = WorkCategory::all()->pluck('type_name', 'id');
 
+        $serch_tags = SerchTag::all()->pluck('name', 'id');
+
         $clients = OurClient::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.works.create', compact('type_of_works', 'clients'));
+        return view('admin.works.create', compact('type_of_works', 'serch_tags', 'clients'));
     }
 
     public function store(StoreWorkRequest $request)
     {
         $work = Work::create($request->all());
         $work->type_of_works()->sync($request->input('type_of_works', []));
+        $work->serch_tags()->sync($request->input('serch_tags', []));
 
         if ($request->input('header_image', false)) {
             $work->addMedia(storage_path('tmp/uploads/' . $request->input('header_image')))->toMediaCollection('header_image');
@@ -65,17 +69,20 @@ class WorkController extends Controller
 
         $type_of_works = WorkCategory::all()->pluck('type_name', 'id');
 
+        $serch_tags = SerchTag::all()->pluck('name', 'id');
+
         $clients = OurClient::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $work->load('type_of_works', 'clients');
+        $work->load('type_of_works', 'serch_tags', 'clients');
 
-        return view('admin.works.edit', compact('type_of_works', 'clients', 'work'));
+        return view('admin.works.edit', compact('type_of_works', 'serch_tags', 'clients', 'work'));
     }
 
     public function update(UpdateWorkRequest $request, Work $work)
     {
         $work->update($request->all());
         $work->type_of_works()->sync($request->input('type_of_works', []));
+        $work->serch_tags()->sync($request->input('serch_tags', []));
 
         if ($request->input('header_image', false)) {
             if (!$work->header_image || $request->input('header_image') !== $work->header_image->file_name) {
@@ -112,7 +119,7 @@ class WorkController extends Controller
     {
         abort_if(Gate::denies('work_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $work->load('type_of_works', 'clients');
+        $work->load('type_of_works', 'serch_tags', 'clients');
 
         return view('admin.works.show', compact('work'));
     }

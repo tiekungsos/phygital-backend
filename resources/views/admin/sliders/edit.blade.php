@@ -137,7 +137,7 @@
 <script>
     Dropzone.options.imageSliderDropzone = {
     url: '{{ route('admin.sliders.storeMedia') }}',
-    maxFilesize: 2, // MB
+    maxFilesize: 50, // MB
     acceptedFiles: '.jpeg,.jpg,.png,.gif',
     maxFiles: 1,
     addRemoveLinks: true,
@@ -145,7 +145,7 @@
       'X-CSRF-TOKEN': "{{ csrf_token() }}"
     },
     params: {
-      size: 2,
+      size: 50,
       width: 4096,
       height: 4096
     },

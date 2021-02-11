@@ -43,6 +43,16 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.work.fields.serch_tag') }}
+                        </th>
+                        <td>
+                            @foreach($work->serch_tags as $key => $serch_tag)
+                                <span class="label label-info">{{ $serch_tag->name }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.work.fields.clients') }}
                         </th>
                         <td>

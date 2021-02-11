@@ -42,4 +42,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Metadata
     Route::post('metadata/media', 'MetadataApiController@storeMedia')->name('metadata.storeMedia');
     Route::apiResource('metadata', 'MetadataApiController', ['except' => ['store', 'destroy']]);
+
+    // Serch Tags
+    Route::apiResource('serch-tags', 'SerchTagApiController');
 });

@@ -74,6 +74,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('metadata/media', 'MetadataController@storeMedia')->name('metadata.storeMedia');
     Route::post('metadata/ckmedia', 'MetadataController@storeCKEditorImages')->name('metadata.storeCKEditorImages');
     Route::resource('metadata', 'MetadataController', ['except' => ['create', 'store', 'destroy']]);
+
+    // Serch Tags
+    Route::delete('serch-tags/destroy', 'SerchTagController@massDestroy')->name('serch-tags.massDestroy');
+    Route::resource('serch-tags', 'SerchTagController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
 // Change password

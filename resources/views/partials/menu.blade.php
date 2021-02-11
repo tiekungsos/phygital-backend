@@ -111,7 +111,7 @@
                     </li>
                 @endcan
                 @can('work_page_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/work-categories*") ? "menu-open" : "" }} {{ request()->is("admin/works*") ? "menu-open" : "" }}">
+                    <li class="nav-item has-treeview {{ request()->is("admin/work-categories*") ? "menu-open" : "" }} {{ request()->is("admin/works*") ? "menu-open" : "" }} {{ request()->is("admin/serch-tags*") ? "menu-open" : "" }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="fa-fw nav-icon far fa-handshake">
 
@@ -137,11 +137,23 @@
                             @can('work_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.works.index") }}" class="nav-link {{ request()->is("admin/works") || request()->is("admin/works/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fab fa-buromobelexperte">
+                                        <i class="fa-fw nav-icon fas fa-clipboard-list">
 
                                         </i>
                                         <p>
                                             {{ trans('cruds.work.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('serch_tag_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.serch-tags.index") }}" class="nav-link {{ request()->is("admin/serch-tags") || request()->is("admin/serch-tags/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-align-right">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.serchTag.title') }}
                                         </p>
                                     </a>
                                 </li>
