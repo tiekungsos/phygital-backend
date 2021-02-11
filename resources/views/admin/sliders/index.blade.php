@@ -38,6 +38,9 @@
                             {{ trans('cruds.slider.fields.image_slider') }}
                         </th>
                         <th>
+                            {{ trans('cruds.slider.fields.video') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -64,6 +67,13 @@
                                 @if($slider->image_slider)
                                     <a href="{{ $slider->image_slider->getUrl() }}" target="_blank" style="display: inline-block">
                                         <img src="{{ $slider->image_slider->getUrl('thumb') }}">
+                                    </a>
+                                @endif
+                            </td>
+                            <td>
+                                @if($slider->video)
+                                    <a href="{{ $slider->video->getUrl() }}" target="_blank">
+                                        {{ trans('global.view_file') }}
                                     </a>
                                 @endif
                             </td>

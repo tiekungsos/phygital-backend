@@ -67,6 +67,18 @@
                             @endif
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.slider.fields.video') }}
+                        </th>
+                        <td>
+                            @if($slider->video)
+                                <a href="{{ $slider->video->getUrl() }}" target="_blank">
+                                    {{ trans('global.view_file') }}
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

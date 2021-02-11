@@ -41,6 +41,10 @@ class SliderController extends Controller
             $slider->addMedia(storage_path('tmp/uploads/' . $request->input('image_slider')))->toMediaCollection('image_slider');
         }
 
+        if ($request->input('video', false)) {
+            $slider->addMedia(storage_path('tmp/uploads/' . $request->input('video')))->toMediaCollection('video');
+        }
+
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $slider->id]);
         }
@@ -69,6 +73,18 @@ class SliderController extends Controller
             }
         } elseif ($slider->image_slider) {
             $slider->image_slider->delete();
+        }
+
+        if ($request->input('video', false)) {
+            if (!$slider->video || $request->input('video') !== $slider->video->file_name) {
+                if ($slider->video) {
+                    $slider->video->delete();
+                }
+
+                $slider->addMedia(storage_path('tmp/uploads/' . $request->input('video')))->toMediaCollection('video');
+            }
+        } elseif ($slider->video) {
+            $slider->video->delete();
         }
 
         return redirect()->route('admin.sliders.index');

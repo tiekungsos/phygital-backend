@@ -18,6 +18,7 @@ class Slider extends Model implements HasMedia
 
     protected $appends = [
         'image_slider',
+        'video',
     ];
 
     const STATUS_RADIO = [
@@ -63,5 +64,10 @@ class Slider extends Model implements HasMedia
         }
 
         return $file;
+    }
+
+    public function getVideoAttribute()
+    {
+        return $this->getMedia('video')->last();
     }
 }

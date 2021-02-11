@@ -31,6 +31,10 @@ class SliderApiController extends Controller
             $slider->addMedia(storage_path('tmp/uploads/' . $request->input('image_slider')))->toMediaCollection('image_slider');
         }
 
+        if ($request->input('video', false)) {
+            $slider->addMedia(storage_path('tmp/uploads/' . $request->input('video')))->toMediaCollection('video');
+        }
+
         return (new SliderResource($slider))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
@@ -57,6 +61,18 @@ class SliderApiController extends Controller
             }
         } elseif ($slider->image_slider) {
             $slider->image_slider->delete();
+        }
+
+        if ($request->input('video', false)) {
+            if (!$slider->video || $request->input('video') !== $slider->video->file_name) {
+                if ($slider->video) {
+                    $slider->video->delete();
+                }
+
+                $slider->addMedia(storage_path('tmp/uploads/' . $request->input('video')))->toMediaCollection('video');
+            }
+        } elseif ($slider->video) {
+            $slider->video->delete();
         }
 
         return (new SliderResource($slider))
