@@ -27,6 +27,13 @@ class StoreWorkRequest extends FormRequest
             'type_of_works'   => [
                 'array',
             ],
+            'serch_tags.*'    => [
+                'integer',
+            ],
+            'serch_tags'      => [
+                'required',
+                'array',
+            ],
             'work_detail'     => [
                 'required',
             ],
