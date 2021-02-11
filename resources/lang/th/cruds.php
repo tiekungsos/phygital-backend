@@ -110,7 +110,9 @@ return [
             'detail'               => 'Detail',
             'detail_helper'        => 'รายละเอียด',
             'image_slider'         => 'Image Slider',
-            'image_slider_helper'  => 'เลือกรูปหรือวีดีโอที่แสดง',
+            'image_slider_helper'  => 'เลือกรูปที่แสดง (เลือกวีดีโอหรือรูปภาพแสดงได้อย่างใดอย่างหนึ่ง)',
+            'video'                => 'video',
+            'video_helper'         => 'เลือกวีดีโอที่แสดง (เลือกวีดีโอหรือรูปภาพแสดงได้อย่างใดอย่างหนึ่ง)',
         ],
     ],
     'ourTeam'        => [
