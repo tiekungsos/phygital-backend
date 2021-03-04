@@ -26,7 +26,7 @@ class GrowupBlogApiController extends Controller
 
     public function getData()
     {
-        return new GrowupBlogResource(GrowupBlog::with(['types'])->get());
+        return new GrowupBlogResource(GrowupBlog::with(['types'])->get(array('blog_name','created_at','detail','id','name_write')));
     }
 
     public function store(StoreGrowupBlogRequest $request)

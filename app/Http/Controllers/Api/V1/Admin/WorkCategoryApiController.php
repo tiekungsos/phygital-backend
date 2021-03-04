@@ -22,7 +22,14 @@ class WorkCategoryApiController extends Controller
 
     public function getData()
     {
-        return new WorkCategoryResource(WorkCategory::with(['typeOfWorkWorks'])->get());
+        $workCat = WorkCategory::with(['typeOfWorkWorks'])
+        ->get(array('id','type_name'));
+
+        foreach ($workCat as $key => $value) {
+            $value->typeOfWorkWorks->each->setAppends([]);
+        }
+
+        return new WorkCategoryResource($workCat);
 
         // return new WorkCategoryResource(WorkCategory::all());
     }

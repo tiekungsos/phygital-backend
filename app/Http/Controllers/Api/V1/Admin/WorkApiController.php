@@ -23,9 +23,22 @@ class WorkApiController extends Controller
         return new WorkResource(Work::with(['type_of_works', 'serch_tags', 'clients'])->get());
     }
     
+
+
+
     public function getData()
     {
-        return new WorkResource(Work::with(['type_of_works','serch_tags', 'clients'])->get());
+        // return new SliderResource(Slider::get();
+        $work = Work::with(['type_of_works','serch_tags', 'clients'])
+        ->get(array('clients_id','id','name_work','work_detail'))
+        ->each->setAppends(['header_image']);
+
+        // $work->clients->setAppends([]);
+   
+
+        // dd($work);
+
+        return new WorkResource($work);
     }
     
 

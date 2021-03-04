@@ -50,17 +50,17 @@ class Work extends Model implements HasMedia
 
     public function type_of_works()
     {
-        return $this->belongsToMany(WorkCategory::class);
+        return $this->belongsToMany(WorkCategory::class)->select(['id', 'type_name']);
     }
 
     public function serch_tags()
     {
-        return $this->belongsToMany(SerchTag::class);
+        return $this->belongsToMany(SerchTag::class)->select(['id', 'name']);
     }
 
     public function clients()
     {
-        return $this->belongsTo(OurClient::class, 'clients_id');
+        return $this->belongsTo(OurClient::class, 'clients_id')->select(['id', 'name']);
     }
 
     public function getHeaderImageAttribute()

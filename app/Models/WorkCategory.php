@@ -33,6 +33,6 @@ class WorkCategory extends Model
 
     public function typeOfWorkWorks()
     {
-        return $this->belongsToMany(Work::class);
+        return $this->belongsToMany(Work::class)->select(['id']);
     }
 }
