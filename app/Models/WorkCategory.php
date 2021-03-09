@@ -31,6 +31,12 @@ class WorkCategory extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
+
+    public function serch_tags()
+    {
+        return $this->belongsToMany(SerchTag::class)->select(['id', 'name']);
+    }
+
     public function typeOfWorkWorks()
     {
         return $this->belongsToMany(Work::class)->select(['id']);

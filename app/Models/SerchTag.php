@@ -35,4 +35,10 @@ class SerchTag extends Model
     {
         return $this->belongsToMany(Work::class);
     }
+
+
+    public function type_of_works()
+    {
+        return $this->belongsToMany(WorkCategory::class)->select(['id', 'type_name']);
+    }
 }

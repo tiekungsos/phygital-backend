@@ -29,6 +29,9 @@
                             {{ trans('cruds.workCategory.fields.type_name') }}
                         </th>
                         <th>
+                            Search Tag
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -44,6 +47,11 @@
                             </td>
                             <td>
                                 {{ $workCategory->type_name ?? '' }}
+                            </td>
+                            <td>
+                                @foreach($workCategory->serch_tags as $key => $item)
+                                    <span class="badge badge-info">{{ $item->name }}</span>
+                                @endforeach
                             </td>
                             <td>
                                 @can('work_category_show')

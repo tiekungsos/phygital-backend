@@ -22,7 +22,7 @@ class WorkCategoryApiController extends Controller
 
     public function getData()
     {
-        $workCat = WorkCategory::with(['typeOfWorkWorks'])
+        $workCat = WorkCategory::with(['typeOfWorkWorks','serch_tags'])
         ->get(array('id','type_name'));
 
         foreach ($workCat as $key => $value) {

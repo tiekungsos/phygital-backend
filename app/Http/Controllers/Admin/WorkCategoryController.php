@@ -10,6 +10,7 @@ use App\Models\WorkCategory;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Models\SerchTag;
 
 class WorkCategoryController extends Controller
 {
@@ -17,7 +18,7 @@ class WorkCategoryController extends Controller
     {
         abort_if(Gate::denies('work_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $workCategories = WorkCategory::all();
+        $workCategories = WorkCategory::with(['serch_tags'])->get();
 
         return view('admin.workCategories.index', compact('workCategories'));
     }
@@ -26,12 +27,15 @@ class WorkCategoryController extends Controller
     {
         abort_if(Gate::denies('work_category_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.workCategories.create');
+        $serch_tags = SerchTag::all()->pluck('name', 'id');
+
+        return view('admin.workCategories.create',compact('serch_tags'));
     }
 
     public function store(StoreWorkCategoryRequest $request)
     {
         $workCategory = WorkCategory::create($request->all());
+        $workCategory->serch_tags()->sync($request->input('serch_tags', []));
 
         return redirect()->route('admin.work-categories.index');
     }
@@ -40,12 +44,17 @@ class WorkCategoryController extends Controller
     {
         abort_if(Gate::denies('work_category_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.workCategories.edit', compact('workCategory'));
+        $serch_tags = SerchTag::all()->pluck('name', 'id');
+
+        $workCategory->load('serch_tags');
+
+        return view('admin.workCategories.edit', compact('workCategory','serch_tags'));
     }
 
     public function update(UpdateWorkCategoryRequest $request, WorkCategory $workCategory)
     {
         $workCategory->update($request->all());
+        $workCategory->serch_tags()->sync($request->input('serch_tags', []));
 
         return redirect()->route('admin.work-categories.index');
     }
